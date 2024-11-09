@@ -5,6 +5,6 @@ namespace OrbitDataShark.Core.Configuration
     public class ProjectConfigurationData
     {
         public string ProjectsRootDirectory { get; set; } = string.Empty;
-        public List<Project> Projects { get; set; } = [];
+        public List<Project> Projects { get; set; } = new List<Project>();
     }
 }

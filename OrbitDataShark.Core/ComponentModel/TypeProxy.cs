@@ -27,7 +27,7 @@ namespace OrbitDataShark.Core.ComponentModel
                 ?? throw new InvalidOperationException($"Property {propertyName} does not exist.");
             MethodInfo getMethod = info.GetMethod
                 ?? throw new AccessViolationException($"Can not access property {propertyName} GetMethod");
-            return getMethod.Invoke(target, new object[] { });
+            return getMethod.Invoke(target, Array.Empty<object>());
         }
         public void SetValue(object target, string propertyName, object value)
         {
@@ -35,7 +35,7 @@ namespace OrbitDataShark.Core.ComponentModel
                 ?? throw new InvalidOperationException($"Property {propertyName} does not exist.");
             MethodInfo setMethod = info.SetMethod
                 ?? throw new AccessViolationException($"Can not access property {propertyName} SetMethod");
-            setMethod.Invoke(target, [value]);
+            setMethod.Invoke(target,new object?[] { value });
         }
         public IEnumerable<object?> IterateProperties(object target)
         {

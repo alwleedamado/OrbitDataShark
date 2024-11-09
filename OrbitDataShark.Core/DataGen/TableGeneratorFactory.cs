@@ -10,7 +10,7 @@ namespace OrbitDataShark.Core.DataGen
 {
     internal static class TableGeneratorFactory
     {
-        private static Dictionary<string, TableGenerator> _tableGenerators { get; } = [];
+        private static Dictionary<string, TableGenerator> _tableGenerators { get; } = new();
         public static TableGenerator Create(Table table)
         {
             if (_tableGenerators.TryGetValue(table.Name, out TableGenerator? tableGenerator)) { return tableGenerator; }
@@ -34,7 +34,7 @@ namespace OrbitDataShark.Core.DataGen
                 var genName = x.Name.Replace("Generator", "").ToLower().Trim();
                 return genName == descriptor.Name.ToLower().Trim();
             });
-            var ctor = generator.GetConstructor([typeof(GeneratorDescriptor)]);
+            var ctor = generator.GetConstructor(new Type[] { typeof(GeneratorDescriptor) });
             var obj = Activator.CreateInstance(generator, descriptor) as Generator;
             return obj;
         }

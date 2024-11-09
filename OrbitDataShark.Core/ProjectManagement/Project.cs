@@ -12,7 +12,7 @@ namespace OrbitDataShark.Core.ProjectManagement
     {
         public string Name { get; set; }
         public string? Description { get; set; }
-        public Dictionary<string, Dataset> Datasets { get; } = [];
+        public Dictionary<string, Dataset> Datasets { get; } = new();
         public Project(string name, string? description = null)
         {
             Name = name;

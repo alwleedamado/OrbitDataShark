@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrbitDataShark.Core", "Orbi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{5E62A0C9-F0B7-4CE0-BFAE-A4EF1A154786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitDataShark.PDK", "OrbitDataShark.PDK\OrbitDataShark.PDK.csproj", "{ED7C16AB-AACE-435B-B0F0-9A343666484D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrbitDataShark.PDK", "OrbitDataShark.PDK\OrbitDataShark.PDK.csproj", "{ED7C16AB-AACE-435B-B0F0-9A343666484D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitDataShark.Core.Test", "OrbitDataShark.Core.Test\OrbitDataShark.Core.Test.csproj", "{A29118AC-608C-49C1-9704-830C2F0B776D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{ED7C16AB-AACE-435B-B0F0-9A343666484D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED7C16AB-AACE-435B-B0F0-9A343666484D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7C16AB-AACE-435B-B0F0-9A343666484D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A29118AC-608C-49C1-9704-830C2F0B776D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A29118AC-608C-49C1-9704-830C2F0B776D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A29118AC-608C-49C1-9704-830C2F0B776D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A29118AC-608C-49C1-9704-830C2F0B776D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

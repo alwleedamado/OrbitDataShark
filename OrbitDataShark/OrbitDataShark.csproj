@@ -23,4 +23,8 @@
   <ItemGroup>
     <Folder Include="Controls\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrbitDataShark.Core\OrbitDataShark.Core.csproj" />
+  </ItemGroup>
 </Project>

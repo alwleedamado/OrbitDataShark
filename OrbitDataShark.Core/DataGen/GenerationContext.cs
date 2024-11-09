@@ -24,9 +24,9 @@ namespace OrbitDataShark.Core.DataGen
                 var tableGenerator = datasetGenerator.TableGenerators[table.Name];
                 var creatorMethod = typeof(GenerationContext).GetMethod(nameof(RuleForTable), BindingFlags.Instance | BindingFlags.NonPublic);
                 MethodInfo? methodInfo = creatorMethod?.MakeGenericMethod(new Type[] { table.PropertyType });
-                var faker = methodInfo?.Invoke(this, [tableGenerator, table.PropertyType]);
+                var faker = methodInfo?.Invoke(this, new object?[] { tableGenerator, table.PropertyType });
                 MethodInfo? genMethod = faker?.GetType().GetMethod("Generate", new Type[] { typeof(string) });
-                var r = genMethod?.Invoke(faker, [null])
+                var r = genMethod?.Invoke(faker, new object?[] { null })
                     ?? throw new Exception($"Failed to generate data for {table.Name}");
                 datasetProxy.SetValue(result, table.Name, r);
             }
@@ -38,15 +38,15 @@ namespace OrbitDataShark.Core.DataGen
             TypeBuilder typeBuilder = builder.Create(table);
             TableGenerator generator = TableGeneratorFactory.Create(table);
             MethodInfo? ruleForTable = typeof(GenerationContext).GetMethod(nameof(RuleForTable), BindingFlags.Instance | BindingFlags.NonPublic);
-            MethodInfo? genericMd = ruleForTable?.MakeGenericMethod([typeBuilder.CreateType()]);
-            object? faker = genericMd?.Invoke(this, [generator, typeBuilder.CreateType()]);
-            MethodInfo? fakerGenerateMd = faker?.GetType().GetMethod("Generate", [typeof(string)]);
+            MethodInfo? genericMd = ruleForTable?.MakeGenericMethod(new Type[] { typeBuilder.CreateType() });
+            object? faker = genericMd?.Invoke(this, new object?[] { generator, typeBuilder.CreateType() });
+            MethodInfo? fakerGenerateMd = faker?.GetType().GetMethod("Generate", new Type[] { typeof(string) });
             for (int i = 0; i < sampleCount; i++)
             {
-                yield return fakerGenerateMd?.Invoke(faker, [null]);
+                yield return fakerGenerateMd?.Invoke(faker, new object?[] { null });
             }
         }
-      
+
         private Faker<T> RuleFor<T, R>(Faker<T> faker, string propName, Generator generator) where T : class where R : class
         {
             return faker.RuleFor(propName, generator.Generate<T, R>());

@@ -2,12 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:OrbitDataShark.ViewModels;assembly=OrbitDataShark"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="OrbitDataShark.Views.ProjectView">
-	<StackPanel Orientation="Vertical">
-		<StackPanel Orientation="Horizontal">
-			<TextBox x:Name="projectName"></TextBox>
-			<Button Content="Create"></Button>
-		</StackPanel>
-	</StackPanel>
+	<UserControl.DataContext>
+		<vm:ProjectViewModel/>
+	</UserControl.DataContext>
+	<RelativePanel>
+		<Button Margin="20" x:Name="createBtn" Content="Create" RelativePanel.AlignRightWithPanel="True"/>
+		<WrapPanel RelativePanel.Below="createBtn" RelativePanel.AlignHorizontalCenterWithPanel="True">
+			<TextBox Width="400" />
+			<Button Command="{Binding SearchProjectCommand}">Search</Button>
+		</WrapPanel>
+		<ListBox ItemsSource="{Binding Projects}">
+
+		</ListBox>
+	</RelativePanel>
 </UserControl>

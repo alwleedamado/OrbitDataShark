@@ -14,31 +14,31 @@ namespace OrbitDataShark.DataGen
             var datasetProxy = builder.BuildDataset(dataset);
             var datasetGenerator = DatasetGeneratorFactory.Create(dataset);
             var tables = datasetProxy.GetProperties().ToList();
-            var result = datasetProxy.CreateInstance();
+            var result = new DatasetGenerationResult(dataset.Name);
 
             foreach (var table in tables)
             {
                 var tableGenerator = datasetGenerator.TableGenerators[table.Name];
                 var creatorMethod = typeof(GenerationContext).GetMethod(nameof(RuleForTable), BindingFlags.Instance | BindingFlags.NonPublic);
-                MethodInfo? methodInfo = creatorMethod?.MakeGenericMethod(new Type[] { table.PropertyType });
+                var methodInfo = creatorMethod?.MakeGenericMethod(new Type[] { table.PropertyType });
                 var faker = methodInfo?.Invoke(this, new object?[] { tableGenerator, table.PropertyType });
-                MethodInfo? genMethod = faker?.GetType().GetMethod("Generate", new Type[] { typeof(string) });
+                var genMethod = faker?.GetType().GetMethod("Generate", new Type[] { typeof(string) });
                 var r = genMethod?.Invoke(faker, new object?[] { null })
                     ?? throw new Exception($"Failed to generate data for {table.Name}");
-                datasetProxy.SetValue(result, table.Name, r);
+                result.Tables.Add(new TableGenerationResult(table.Name, new ObjectProxy(r)));
             }
             return result;
         }
         public IEnumerable<object?> GenerateTable(Table table, int sampleCount = 1)
         {
-            TableBuilder builder = new TableBuilder(table.Name);
-            TypeBuilder typeBuilder = builder.Create(table);
-            TableGenerator generator = TableGeneratorFactory.Create(table);
-            MethodInfo? ruleForTable = typeof(GenerationContext).GetMethod(nameof(RuleForTable), BindingFlags.Instance | BindingFlags.NonPublic);
-            MethodInfo? genericMd = ruleForTable?.MakeGenericMethod(new Type[] { typeBuilder.CreateType() });
-            object? faker = genericMd?.Invoke(this, new object?[] { generator, typeBuilder.CreateType() });
-            MethodInfo? fakerGenerateMd = faker?.GetType().GetMethod("Generate", new Type[] { typeof(string) });
-            for (int i = 0; i < sampleCount; i++)
+            var builder = new TableBuilder(table.Name);
+            var typeBuilder = builder.Create(table);
+            var generator = TableGeneratorFactory.Create(table);
+            var ruleForTable = typeof(GenerationContext).GetMethod(nameof(RuleForTable), BindingFlags.Instance | BindingFlags.NonPublic);
+            var genericMd = ruleForTable?.MakeGenericMethod(new Type[] { typeBuilder.CreateType() });
+            var faker = genericMd?.Invoke(this, new object?[] { generator, typeBuilder.CreateType() });
+            var fakerGenerateMd = faker?.GetType().GetMethod("Generate", new Type[] { typeof(string) });
+            for (var i = 0; i < sampleCount; i++)
             {
                 yield return fakerGenerateMd?.Invoke(faker, new object?[] { null });
             }
@@ -52,11 +52,11 @@ namespace OrbitDataShark.DataGen
         {
             var columns = tableType.GetProperties();
             Faker<T>? faker = new();
-            MethodInfo? ruleForInfo = typeof(GenerationContext).GetMethod(nameof(RuleFor), BindingFlags.Instance | BindingFlags.NonPublic);
+            var ruleForInfo = typeof(GenerationContext).GetMethod(nameof(RuleFor), BindingFlags.Instance | BindingFlags.NonPublic);
             for (var i = 0; i < columns.Length; i++)
             {
-                string columnName = columns[i].Name;
-                Generator generator = tableGenerator.ColumnGenerators[columnName];
+                var columnName = columns[i].Name;
+                var generator = tableGenerator.ColumnGenerators[columnName];
                 var generic = ruleForInfo?.MakeGenericMethod(new Type[] { typeof(T), columns[i].PropertyType });
                 faker = (Faker<T>?)generic?.Invoke(this, new object[] { faker!, columnName, generator });
             }
@@ -64,10 +64,10 @@ namespace OrbitDataShark.DataGen
         }
         private static DatasetBuilder GetDatasetBuilder(string name)
         {
-            if (_datasetBuilders.TryGetValue(name, out DatasetBuilder? dataset))
+            if (_datasetBuilders.TryGetValue(name, out var dataset))
                 return dataset;
 
-            DatasetBuilder builder = new DatasetBuilder();
+            var builder = new DatasetBuilder();
             _datasetBuilders.Add(name, builder);
             return builder;
         }

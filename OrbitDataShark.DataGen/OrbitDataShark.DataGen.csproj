@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TargetFrameworks>net8.0;net7.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Bogus">
+        <HintPath>..\..\..\..\.nuget\packages\bogus\35.6.1\lib\net6.0\Bogus.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

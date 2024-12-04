@@ -21,7 +21,7 @@
 		</Menu>
 		<DockPanel DockPanel.Dock="Bottom">
 			<StackPanel DockPanel.Dock="Left" Width="40"></StackPanel>
-			<Border Padding="10,10,0,0">
+			<Border Padding="10,0,0,0">
 
 				<TabControl DockPanel.Dock="Right">
 					<TabItem Header="Projects">

@@ -1,8 +1,6 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
-namespace OrbitDataShark;
+namespace OrbitDataShark.Views.Generators;
 
 public partial class NameGeneratorView : Window
 {

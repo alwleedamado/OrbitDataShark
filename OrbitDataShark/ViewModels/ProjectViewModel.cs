@@ -11,7 +11,10 @@ namespace OrbitDataShark.ViewModels
     public partial class ProjectViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private ObservableCollection<ProjectID> projects = [];
+        private ObservableCollection<ProjectID> projects = [new ProjectID (Guid.NewGuid(),"OrbitFood"),
+        new ProjectID (Guid.NewGuid(),"OrbitFood"),
+            new(Guid.NewGuid(),"CanaryCall"),
+        ];
         [ObservableProperty]
         private ObservableCollection<ProjectID> filteredProects = [];
 

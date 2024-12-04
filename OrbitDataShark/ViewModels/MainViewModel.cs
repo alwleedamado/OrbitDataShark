@@ -3,5 +3,5 @@
 public partial class MainViewModel : ViewModelBase
 {
     public string Greeting => "Welcome to Avalonia!";
-    public string[] MenuItems = new string[]{"File"};
+    public string[] MenuItems = ["File"];
 }

@@ -8,14 +8,23 @@
 	<UserControl.DataContext>
 		<vm:ProjectViewModel/>
 	</UserControl.DataContext>
-	<RelativePanel>
-		<Button Margin="20" x:Name="createBtn" Content="Create" RelativePanel.AlignRightWithPanel="True"/>
-		<WrapPanel RelativePanel.Below="createBtn" RelativePanel.AlignHorizontalCenterWithPanel="True">
-			<TextBox Width="400" />
-			<Button Command="{Binding SearchProjectCommand}">Search</Button>
-		</WrapPanel>
-		<ListBox ItemsSource="{Binding Projects}">
-
+	<Grid RowDefinitions="Auto,*,Auto">
+		<Grid x:Name="Tools" Margin="0,20,0,0"  ColumnDefinitions="*,Auto,*,Auto">
+			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Column="1">
+				<TextBox  Width="300" />
+				<Button Command="{Binding SearchProjectCommand}">Search</Button>
+			</StackPanel>
+			<Button Grid.Column="3" x:Name="createBtn" Content="Create" />
+		</Grid>
+		<ListBox Grid.Row="1"  Margin="20,30,20,20" ItemsSource="{Binding Projects}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+					<TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+						<Button HorizontalAlignment="Right">Delete</Button>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 		</ListBox>
-	</RelativePanel>
+	</Grid>
 </UserControl>

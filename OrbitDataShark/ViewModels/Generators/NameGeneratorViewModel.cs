@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OrbitDataShark.Core.DataGen.Generators.Name;
+using OrbitDataShark.DataGen.Generators.Name;
 
 namespace OrbitDataShark.ViewModels.Generators
 {
     internal class NameGeneratorViewModel : ViewModelBase
     {
-        public readonly NameType[] NameTypeOptions = new NameType[] { NameType.FirstName, NameType.LastName };
+        public readonly NameType[] NameTypeOptions = [NameType.FirstName, NameType.LastName];
     }
 }

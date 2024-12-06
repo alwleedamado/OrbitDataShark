@@ -3,13 +3,11 @@
     <PropertyGroup>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <TargetFrameworks>net8.0;net7.0</TargetFrameworks>
+        <TargetFramework>net7.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="Bogus">
-        <HintPath>..\..\..\..\.nuget\packages\bogus\35.6.1\lib\net6.0\Bogus.dll</HintPath>
-      </Reference>
+      <PackageReference Include="Bogus" Version="35.6.1" />
     </ItemGroup>
 
 </Project>

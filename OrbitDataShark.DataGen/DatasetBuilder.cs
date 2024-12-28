@@ -13,7 +13,7 @@ namespace OrbitDataShark.DataGen
             {
                 return value;
             }
-            var builder = CustomAssembly.GetInstance().DefineType(dataset.Name, System.Reflection.TypeAttributes.Public);
+            var builder = CustomAssembly.Instance.DefineType(dataset.Name, System.Reflection.TypeAttributes.Public);
             foreach (var table in dataset.Tables)
             {
                 var tableBuilder = new TableBuilder(table.Name);

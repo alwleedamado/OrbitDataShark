@@ -25,10 +25,11 @@ namespace OrbitDataShark.DataGen
             builder.SetParent(typeof(GeneratedType));
             return builder;
         }
-        public static CustomAssembly GetInstance()
-        {
-            _instance ??= new CustomAssembly();
-            return _instance;
+        public static CustomAssembly Instance {
+            get {
+                _instance ??= new CustomAssembly();
+                return _instance;
+            }
         }
     }
 }

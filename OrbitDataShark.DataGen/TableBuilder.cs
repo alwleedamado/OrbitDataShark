@@ -18,7 +18,7 @@ namespace OrbitDataShark.DataGen
 
         private TypeBuilder CreateColumns(Table table)
         {
-            TypeBuilder type = CustomAssembly.GetInstance().DefineType(TypeName, TypeAttributes.Public);
+            TypeBuilder type = CustomAssembly.Instance.DefineType(TypeName, TypeAttributes.Public);
             foreach (var column in table.Columns)
             {
                 PocoBuilder.DefineProperty(type, column.Name, column.ClrType);

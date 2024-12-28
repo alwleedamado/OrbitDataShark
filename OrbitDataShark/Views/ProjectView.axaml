@@ -14,7 +14,7 @@
 				<TextBox  Width="300" />
 				<Button Command="{Binding SearchProjectCommand}">Search</Button>
 			</StackPanel>
-			<Button Grid.Column="3" x:Name="createBtn" Content="Create" />
+			<Button Grid.Column="3" Margin="0,0,30,0" x:Name="createBtn" Content="Create" />
 		</Grid>
 		<ListBox Grid.Row="1"  Margin="20,30,20,20" ItemsSource="{Binding Projects}">
 			<ListBox.ItemTemplate>

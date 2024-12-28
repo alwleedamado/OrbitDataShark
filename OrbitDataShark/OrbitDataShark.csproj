@@ -27,4 +27,8 @@
   <ItemGroup>
     <ProjectReference Include="..\OrbitDataShark.DataGen\OrbitDataShark.DataGen.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\ProjectDetailView.axaml" />
+  </ItemGroup>
 </Project>

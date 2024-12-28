@@ -20,14 +20,23 @@
 			</MenuItem>
 		</Menu>
 		<DockPanel DockPanel.Dock="Bottom">
-			<StackPanel DockPanel.Dock="Left" Width="40"></StackPanel>
-			<Border Padding="10,0,0,0">
+			<Grid DockPanel.Dock="Left" Width="40" Background="Red" RowDefinitions="Auto,*">
+				<Grid></Grid>
+				<StackPanel Grid.Row="1">
+					<StackPanel.Styles>
+						<Style>
 
-				<TabControl DockPanel.Dock="Right">
-					<TabItem Header="Projects">
-						<views:ProjectView />
-					</TabItem>
-				</TabControl>
+						</Style>
+					</StackPanel.Styles>
+					<Button>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="Projects"/>
+						</StackPanel>
+					</Button>
+				</StackPanel>
+			</Grid>
+			<Border Padding="10,0,0,0">
+				<views:ProjectView />
 			</Border>
 		</DockPanel>
 	</DockPanel>

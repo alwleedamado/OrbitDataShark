@@ -11,20 +11,20 @@ namespace OrbitDataShark.ViewModels
     public partial class ProjectViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private ObservableCollection<ProjectID> projects = [new ProjectID (Guid.NewGuid(),"OrbitFood"),
-        new ProjectID (Guid.NewGuid(),"OrbitFood"),
+        private ObservableCollection<ObjectId> projects = [new ObjectId (Guid.NewGuid(),"OrbitFood"),
+        new ObjectId (Guid.NewGuid(),"OrbitFood"),
             new(Guid.NewGuid(),"CanaryCall"),
         ];
         [ObservableProperty]
-        private ObservableCollection<ProjectID> filteredProects = [];
+        private ObservableCollection<ObjectId> filteredProects = [];
 
         [RelayCommand]
         public void SearchProject(string term)
         {
-            var filtered = projects.Where(x => x.Name.StartsWith(term));
+            var filtered = Projects.Where(x => x.Name.StartsWith(term));
 
         }
     }
 
-    public record ProjectID(Guid Id, string Name);
+    public record ObjectId(Guid Id, string Name);
 }

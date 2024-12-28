@@ -9,15 +9,13 @@ namespace OrbitDataShark.DataGen.Generators.Finance
 {
     public class FinanceGeneratorDescriptor : GeneratorDescriptor
     {
-        public FinanceGeneratorDescriptor(ClrType clrType = ClrType.String)
-        {
-            ClrType = clrType;
-        }
-        public ClrType ClrType { get; private set; }
+
         public FinanceType FinanceType
         {
             get => (FinanceType)_arguments["FinanceType"];
             set => _arguments["FinanceType"] = value;
         }
+
+        public override string GeneratorName => "Finance";
     }
 }

@@ -9,11 +9,12 @@ namespace OrbitDataShark.DataGen.Generators.Address
 {
     public class AddressGeneratorDescriptor : GeneratorDescriptor
     {
-        public ClrType ClrType => ClrType.String;
         public AddressType AddressType
         {
             get => (AddressType)_arguments["AddressType"];
             set => _arguments["AddressType"] = value;
         }
+
+        public override string GeneratorName => "Address";
     }
 }

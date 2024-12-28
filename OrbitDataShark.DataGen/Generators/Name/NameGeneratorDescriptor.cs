@@ -6,7 +6,6 @@ namespace OrbitDataShark.DataGen.Generators.Name
 {
     public class NameGeneratorDescriptor : GeneratorDescriptor
     {
-        public ClrType ClrType => ClrType.String;
         public Gender Gender
         {
             get => (Gender)Arguments["Gender"];
@@ -18,5 +17,6 @@ namespace OrbitDataShark.DataGen.Generators.Name
             set => _arguments["NameType"] = value;
         }
 
+        public override string GeneratorName => "Name";
     }
 }

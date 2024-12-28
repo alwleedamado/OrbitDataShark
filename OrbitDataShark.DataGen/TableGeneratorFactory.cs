@@ -27,7 +27,7 @@ namespace OrbitDataShark.DataGen
             var generator = generators.Where(x => x.BaseType == typeof(Generator)).Single(x =>
             {
                 var genName = x.Name.Replace("Generator", "").ToLower().Trim();
-                return genName == descriptor.Name.ToLower().Trim();
+                return genName == descriptor.GeneratorName.ToLower().Trim();
             });
             var ctor = generator.GetConstructor(new Type[] { typeof(GeneratorDescriptor) });
             var obj = Activator.CreateInstance(generator, descriptor) as Generator;

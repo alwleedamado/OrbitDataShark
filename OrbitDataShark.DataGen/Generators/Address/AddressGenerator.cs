@@ -16,7 +16,7 @@ namespace OrbitDataShark.DataGen.Generators.Address
 
         public override Func<Faker, T, R> Generate<T, R>()
         {
-            var descriptor = (AddressDescriptor)base.Descriptor;
+            var descriptor = (AddressGeneratorDescriptor)base.Descriptor;
 
             return descriptor.AddressType switch
             {

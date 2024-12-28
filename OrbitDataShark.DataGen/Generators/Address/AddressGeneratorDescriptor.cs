@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace OrbitDataShark.DataGen.Generators.Address
 {
-    public class AddressDescriptor : GeneratorDescriptor
+    public class AddressGeneratorDescriptor : GeneratorDescriptor
     {
+        public ClrType ClrType => ClrType.String;
         public AddressType AddressType
         {
             get => (AddressType)_arguments["AddressType"];

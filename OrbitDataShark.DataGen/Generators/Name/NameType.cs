@@ -4,6 +4,11 @@
     {
         FullName,
         FirstName,
-        LastName
+        LastName,
+        Prefix,
+        JobTitle,
+        JobDescription,
+        JobArea,
+        JobType
     }
 }

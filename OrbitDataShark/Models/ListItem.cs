@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrbitDataShark.ViewModels
+namespace OrbitDataShark.Models
 {
-    public record ObjectId(Guid Id, string Name);
+    public record ListItem(Guid Id, string Name);
 }

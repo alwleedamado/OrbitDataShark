@@ -30,7 +30,7 @@
 					</StackPanel.Styles>
 					<Button>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Projects"/>
+							<TextBlock Text="{Binding Greeting}"/>
 						</StackPanel>
 					</Button>
 				</StackPanel>

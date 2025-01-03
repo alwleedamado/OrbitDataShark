@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:OrbitDataShark.ViewModels.Generators;assembly=OrbitDataShark"
+		mc:Ignorable="d" Width="400" Height="200"
+        x:Class="OrbitDataShark.AddressGeneratorView"
+        Title="AddressGeneratorView">
+	<Design.DataContext>
+		<vm:AddressGeneratorViewModel/>
+	</Design.DataContext>
+	<Grid>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20" Orientation="Horizontal">
+			<Label Content="Address Type"/>
+			<ComboBox Width="200" ItemsSource="{Binding AddressTypeOptions}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Name}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+		</StackPanel>
+		<StackPanel Margin="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="20">
+			<Button Padding="10" Content="Ok"></Button>
+			<Button Padding="10" Content="Cancel"></Button>
+		</StackPanel>
+	</Grid>
+</Window>

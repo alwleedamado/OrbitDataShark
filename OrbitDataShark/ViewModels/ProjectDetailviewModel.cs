@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,16 +9,10 @@ namespace OrbitDataShark.ViewModels
 {
     internal partial class ProjectDetailviewModel : ViewModelBase
     {
-        [ObservableProperty]
-        private string name = string.Empty;
+        public string Name = string.Empty;
 
-        [ObservableProperty]
-        private ObservableCollection<ObjectId> datasets = [];
+        private ObservableCollection<ObjectId> Datasets = [];
 
-        [RelayCommand]
-        public void OpenDataset(Guid id)
-        {
-
-        }
+        
     }
 }

@@ -4,27 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="clr-namespace:OrbitDataShark.ViewModels;assembly=OrbitDataShark"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="OrbitDataShark.Views.ProjectView">
+             x:Class="OrbitDataShark.Views.ProjectView"
+			 x:DataType="vm:ProjectViewModel">
 	<UserControl.DataContext>
 		<vm:ProjectViewModel/>
 	</UserControl.DataContext>
 	<Grid RowDefinitions="Auto,*,Auto">
 		<Grid x:Name="Tools" Margin="0,20,0,0"  ColumnDefinitions="*,Auto,*,Auto">
 			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Column="1">
-				<TextBox  Width="300" />
-				<Button Command="{Binding SearchProjectCommand}">Search</Button>
+				<TextBox Name="SearchBox" Width="300" />
+				<Button Command="{Binding SearchProjectCommand}" CommandParameter="{Binding #SearchBox.Text}">Search</Button>
 			</StackPanel>
 			<Button Grid.Column="3" Margin="0,0,30,0" x:Name="createBtn" Content="Create" />
 		</Grid>
-		<ListBox Grid.Row="1"  Margin="20,30,20,20" ItemsSource="{Binding Projects}">
-			<ListBox.ItemTemplate>
+		<ItemsControl Background="Transparent" Grid.Row="1"  Margin="20,30,20,20" ItemsSource="{Binding Projects}">
+			<ItemsControl.ItemTemplate>
 				<DataTemplate>
-					<Grid>
-					<TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
-						<Button HorizontalAlignment="Right">Delete</Button>
-					</Grid>
+					<Panel>
+						<TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+						<StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Right">
+							<Button Command="{Binding $parent[UserControl].((vm:ProjectViewModel)DataContext).DeleteProjectCommand}">Delete</Button>
+							<Button Command="{Binding $parent[UserControl].((vm:ProjectViewModel)DataContext).OpenProjectCommand}">Open</Button>
+						</StackPanel>
+					</Panel>
 				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
 	</Grid>
 </UserControl>

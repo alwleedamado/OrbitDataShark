@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrbitDataShark.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,7 +10,15 @@ namespace OrbitDataShark.ViewModels
 {
     internal partial class ProjectDetailviewModel : ViewModelBase
     {
-        public string Name = string.Empty;
+        private readonly ProjectModel _project;
+
+        public ProjectDetailviewModel(ProjectModel project)
+        {
+            _project = project;
+        }
+
+        public string Name => _project.Name;
+        public Guid Id => _project.Id;
 
         private ObservableCollection<ObjectId> Datasets = [];
 

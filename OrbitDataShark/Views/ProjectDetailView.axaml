@@ -7,25 +7,29 @@
 	<Grid>
 		<!-- Project info -->
 		<Grid>
-
+			<Label Content="{Binding Name}"></Label>
 		</Grid>
 
 		<!-- Datasets -->
-		<WrapPanel>
-			<Border Padding="10">
-				<ItemsControl ItemsSource="{Binding Datasets}">
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<Button Command="{Binding OpenDatasetCommand}">
-								<StackPanel>
-									<Image></Image>
-									<TextBlock Text="{Binding Name}"></TextBlock>
-								</StackPanel>
-							</Button>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</Border>
-		</WrapPanel>
+		<Border Padding="10">
+			<ListBox Background="Transparent" ItemsSource="{Binding Datasets}">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel />
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Button Command="{Binding $parent[UserControl].DataContext.OpenDatasetCommand}"
+								CommandParameter="{Binding Id}">
+							<StackPanel>
+								<Image></Image>
+								<TextBlock Text="{Binding Name}"></TextBlock>
+							</StackPanel>
+						</Button>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
 	</Grid>
 </UserControl>
